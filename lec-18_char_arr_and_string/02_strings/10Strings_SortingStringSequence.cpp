@@ -28,7 +28,7 @@ int main()
         cout<<arr[i]<<" ";
     }cout<<endl;
 
-    sort( arr , arr + n , greater<string>());// here arr[] is by default sorted in lexicographically dec. order
+    sort( arr , arr + n , greater<string>());// here arr[] is sorted in lexicographically dec. order 
     for (int i = 0; i < n; i++)
     {
         cout<<arr[i]<<" ";

@@ -22,6 +22,7 @@ int main()
     char str2[100];
     cin>>str2; // let's say ABC
     cout<<(sizeof(str2)/sizeof(char)) - 1 <<endl;//  may not always work
+    // https://chatgpt.com/share/69d3e2fc-1520-8324-8968-8787a239f620
     cout<<findLength(str2)<<endl;
     cout<<strlen(str2)<<endl;
 

@@ -47,7 +47,7 @@ int main()
      string w = "zoom";
      cout<<w.size()<<endl;
 
-     w.clear();// to make the string eempty 
+     w.clear();// to make the string empty 
 
      cout<<w.size()<<endl;
 

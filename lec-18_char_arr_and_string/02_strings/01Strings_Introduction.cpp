@@ -15,7 +15,7 @@ using namespace std ;
 int main() 
 {
     string s1 ; // here , we have declared variable s1 of string type 
-              // OR we have declared s1 as an onject of string class 
+              // OR we have declared s1 as an object of string class 
     s1 = "abc" ; // here we have assigned string literal "abc" to s1
     cout<<s1<<endl;
     cout<<"length of (" <<  s1 << " ) = " <<s1.size()<<endl;

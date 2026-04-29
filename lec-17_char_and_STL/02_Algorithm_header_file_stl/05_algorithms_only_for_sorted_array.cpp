@@ -23,7 +23,8 @@ int main()
     int brr[] = {7,10,10,15,15,15,15,21,26,30,30,30,55 , 70};
     int m  = sizeof(brr)/sizeof(brr[0]);
     key = 14 ;// 14 ke baraabar ye iss se just greater element ka address dega lower_bound()
-    cout<<lower_bound(brr , brr + m , key) - brr <<endl;
+    cout<<lower_bound(brr , brr + m , key) - brr <<endl; 
+    // first element >= key 
     key = 10 ;
     cout<<lower_bound(brr , brr + m , key) - brr <<endl;
 
@@ -31,8 +32,9 @@ int main()
 
     // 3. finding upper bound for a key in a sorted sequence in O(logn) using upper_bound()
     //upper_bound() will return the address of element just greater than the key ( not equal to that key , but only greater than the key )
-    key = 30;
+    key = 25;
     cout<<upper_bound(brr , brr + m , key)-brr<<endl;
+    // upper_bound returns an iterator pointing to the first element that is > (strictly greater than) the given value.
 
     // 4. counting the occurance of a key in a sorted sequence in O(logn) --> upper_bound() - lower_bound()
     key = 15 ;
