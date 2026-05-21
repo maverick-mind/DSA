@@ -21,7 +21,7 @@ using namespace std;
 int main() 
 {
     // set<int> s ; // by-default set is in increasing order 
-    set<int , greater<int>> ; // for decreasing order set 
+    set<int , greater<int>> s; // for decreasing order set 
     cout<<"size : "<<s.size()<<endl;
     cout<<"empty : "<<s.empty()<<endl; // boolean value
 
