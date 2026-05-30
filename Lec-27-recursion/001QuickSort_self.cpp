@@ -4,6 +4,8 @@ using namespace std;
 // Lomuto Partition
 //The Lomuto partition algorithm divides an array based on a pivot element. One pointer marks the boundary for elements smaller than the pivot, while the other pointer helps in array traversal. As we traverse the array, smaller elements are moved to the left of the boundary and boundary expands. After the traversal, all elements to the left of the boundary are smaller, and those on the right are larger than pivot.
 
+// [ smaller ] pivot [ larger ]
+//   left        X      right
 int partition( vector<int> &arr , int start , int end)
 {
     int i = start - 1 ;
