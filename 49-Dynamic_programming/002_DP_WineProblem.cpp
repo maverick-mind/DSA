@@ -115,8 +115,10 @@ int fTopDownStateOptimised(vector<int> p, int i, int j, vvi& dp) {
 
 // time : O(n^2)
 // space: O(n^2)
-// [HW] optimise the space to O(n)
+// [HW] optimise the space to O(n) , as while filling 2-D dp vector , current row depends only on the next row , thus by making two 1-D vector , will do all the work 
 
+// this approach : filled the table [bottom to up][right to left] 
+// another approach : fill the table , diagonally top to bottom , after one diagonal is filled , move to the next diagonal in right side
 int fBottomUp(const vector<int>& p, int n) {
 
 	vvi dp(n, vector<int>(n));
