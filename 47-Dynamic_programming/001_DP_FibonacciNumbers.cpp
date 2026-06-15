@@ -1,3 +1,8 @@
+
+/*
+Changing variables in normal recursive function = dimensions of dp . Dependent variable hai toh reduce karo, independent hain toh nahi
+*/ 
+
 /*
 
 given a non-negative number n, find the nth fibonacci no.

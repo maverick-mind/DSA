@@ -1,4 +1,8 @@
 
+/*
+Changing variables in normal recursive function = dimensions of dp . Dependent variable hai toh reduce karo, independent hain toh nahi
+*/ 
+
 // if we don't know , how many unique sub-problems can be there , then we can't use array as a map for dp
 // we can use array as a map for dp questions , only when there is ONE-TO-ONE mapping between PARAMETERs(n) and INDICES OF ARRAY , number of parameter will decide the dimension of dp vector
 
