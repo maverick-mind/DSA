@@ -108,7 +108,5 @@ int main()
 
     cout<<fxnBottomUpSpaceOptimised2(n , k)<<endl;
  
- 
- 
     return 0 ;
 }
