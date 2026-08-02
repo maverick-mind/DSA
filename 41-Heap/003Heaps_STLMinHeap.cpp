@@ -19,7 +19,8 @@ int main() {
     // we can make our own comparator , by any of the methods : function pointer ,function object 
 
 
-	priority_queue<int /* datatype of the heap */, deque<int> /* internal representation of the heap */, greater<int>/* comparator needed for sorting */> m;
+	priority_queue<int /* datatype of the heap */, deque<int> /* internal representation of the heap */, greater</* int */>/* comparator needed for sorting */> m;
+    // it is optional to mention the datatype of the heap inside the greater<> or less<>
 
     // internally , greater<int> is a class. SO if we write our custom comparator , that should be inside a class , and should be a functor 
 
