@@ -143,11 +143,73 @@ for value is hashmap
 --If we want our neighbour list to be sorted : use set<>
 --If we don't want to store neighbour list in sorted order : use vector<> 
 
+*/
 
+
+
+/*
+Adjacency Matrix : space : O(v^2)
+To represent an undirected graph that contain |V| vertices and |E| edges using "adjacency matrix" , you have to create a 2D-ARRAY of size |V| x |V| , such that you assign the value "one" to the cells at the (i,j)th index and (j,i)th index of the matrix if there exists an edge between the vertices of the graph labelled as i and j respectively. 
+
+
+If graph is undirected : 
+matrix[u][v] = 1 ;
+matrix[v][u] = 1 ; // ignore this if graph is directed 
+
+
+If the graph is weighted : 
+matrix[u][v] = weight of edge between u and v 
+matrix[v][u] = weight ; // ignore this if graph is directed 
+
+
+
+--Graph operations for Adjacency Matrix 
+
+Assume you are given a graph that contains |V| vertices and |E| edges. 
+
+-- ADD an edge between U and V : --> O(1) time : matrix[U][V] = 1 ; matrix[V][U] = 1 ;
+
+-- CHECK if an edge exists between vertex 'U' : --> O(1) time : check if matrix[U][V] == 1 ? 
+
+-- DELETE an edge between vertex 'U' and 'V' : --> O(1) time : matrix[U][V] = 0 ; matrix[V][U] = 0;
+
+-- List all the neighbours of vertex 'U' : --> O(|V|) time : iterate through all the columns of row 'U' 
 
 */
 
 
 
+/*
+ADJACENCY LIST vs  ADJACENCY MATRIX 
+
+-- If the graph is sparse i.e. it has less number of edges then one should represent it using "adjacency list". In contrast , if the graph is dense i.e. it has higher number of edges then one should represent using "adjacency matrix"
+
+If number of edges ~ number of vertices , we treat the graph as sparse 
+If |E| ~ |V| --> go with the adjacency list 
+If |E| ~ |V|^2 --> go with the adjacency matrix 
+
+--We know that , for a graph that contains |V| number of vertices and |E| number of edges , the space required to represent it using "adjacency list" is O(|V| + |E|) and the space required to represent it using "adjacency matrix" is O(|V|^2)  
+
+
+                        sparse graph : |E| ~ |V|
+                        /                 \
+                      /                     \ 
+              Adjacency List             Adjacency Matrix 
+              space : V + 2E             space : |V|^2
+              if E ~ V 
+              space  ~ 3V 
+                     ~ O(V)
+              (adjacency List preferred in case of sparse graph )
+
+                     dense graph : |E| ~ |V|^2
+                      /                 \
+                    /                     \ 
+                Adjacency List           Adjacency Matrix 
+                space : V + 2E           space : V^2 
+                space ~ (V + 2V^2)       (adjacency matrix preferred in case of dense graph )
+                
+
+
+*/
 
 
