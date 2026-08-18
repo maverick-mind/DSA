@@ -6,6 +6,8 @@ Given a connected graph and a source vertex , design an algorithm to find all th
 
 // DEPTH FIRST SEARCH (DFS) in Graphs : The key idea behind the DFS algorithms in graph is that for any vertex "u" in the graph , when you visit one of it's "unvisited neighbours" , say "v" then first you visit all the unvisited vertices reachable from "v" before you visit the other "unvisited neighbour" of "u".
 
+
+// There can be multiple DFS for a graph , it is not necessary to always have an unique DFS for a graph 
 /*
 Implementation of graph search using
 
