@@ -72,6 +72,9 @@ vector<set<int>> buildGraph()
 // In trees , we have no cycles so no need to worry which node is visited and which is not visited. In graph we have cycles , so it is important to track which node is visited and which node is not visited , so that we don't end up again and again on the same node. 
 
 
+// time : O(|V| + 2*|E|)
+// space : |V| due to set st + |V| due to maximum stack frames at a time : O(2*|V|)
+
 // list all the vertices that can be reached from the source node , here source node is 0
 void dfsGraphSearch(const vector<set<int>> & adjacencyList , set<int> & st , int currentNode)
 {
@@ -103,6 +106,19 @@ int main()
     int sourceVertex = 0 ; // assume 0 is the source vertex 
 
     dfsGraphSearch(adjacencyList , reachableNodes , sourceVertex) ;
+    // The DFS of a graph is a sub-graph of a given Graph , the dfs of a graph is also a tree , because as we traversing graph using dfs , every node is traversed once , every node is connected , every node has exactly one parent , every node is acyclic , and this tree contains all the nodes of the graph , thus it is a "spanning tree" , and the sub-graph formed by dfs traversal of a graph is also known as : DFS tree 
+
+    // In any graph , which is connected , if we apply dfs , internally a dfs-tree is formed and that dfs tree is spanning tree 
+    // some edges of the graph are missing in the dfs-spanning tree of the graph
+
+    // Back edge = edge going backward to an ancestor in the current DFS recursion path.
+    // OR 
+    // Back edges : Edges that are present in the graph but are missing in the dfs-tree are known as back edges.
+    // Back edge = a non-tree edge that connects a vertex to one of its ancestors in the DFS tree.
+
+    // Also , if we have back edges , then we have cycle in the original graph.
+
+    // To check if a graph contain any cycle or not , just check if the graph has back edge or not 
 
     for(auto & neighbour : reachableNodes)
     {

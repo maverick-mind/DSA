@@ -23,46 +23,50 @@ Implementation of graph search using
 
 */
 
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
 // time : O(V + 2E)
 // space: V due to vis[] + V due to fn call stack ~ O(V)
 
-void dfs(int cur, const vector<vector<int>>& adj, vector<bool>& vis) {
+void dfs(int cur, const vector<vector<int> > &adj, vector<bool> &vis)
+{
 
-  vis[cur] = true;
-  cout << cur << " ";
+    
+    vis[cur] = true; // for |V| nodes , total time : |V| 
+    cout << cur << " ";
 
-  for (int ngb : adj[cur]) {
-    if (!vis[ngb]) {
-      dfs(ngb, adj, vis);
+    for (int ngb : adj[cur]) // accross all the calls , this loop will run for sum of all the degrees of the vertices times , Σ degree(vertices) = 2*(|E|) 
+    {
+        if (!vis[ngb])
+        {
+            dfs(ngb, adj, vis);
+        }
     }
-  }
-
 }
 
-int main() {
+int main()
+{
 
-  int n, m;
-  cin >> n >> m;
+    int n, m;
+    cin >> n >> m;
 
-  vector<vector<int>> adj(n);
+    vector<vector<int> > adj(n);
 
-  for (int i = 0; i < m; i++) {
-    int u, v;
-    cin >> u >> v;
-    adj[u].push_back(v);
-    adj[v].push_back(u); // comment this out if graph is directed
-  }
+    for (int i = 0; i < m; i++)
+    {
+        int u, v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u); // comment this out if graph is directed
+    }
 
-  int src = 0; // assume 0 is the source vertex
-  vector<bool> vis(n, false);
+    int src = 0; // assume 0 is the source vertex
+    vector<bool> vis(n, false);
 
-  dfs(src, adj, vis);
+    dfs(src, adj, vis);
 
-  return 0;
-
+    return 0;
 }
