@@ -40,9 +40,37 @@ e.g.
 
 #include<bits/stdc++.h>
 using namespace std;
+
+
+// extent the single source shortest path question , 
+// Earlier we were focusing on just shortest length from from source node to all other node.
+// Now , we want to print the shortest length from "source node" to a given "destination node".
+
+// Tp print the shortest length path from "source node" to "destination node" , at each node , just store the parent of that node 
+
+vector<int> generateSSSPath(vector<int> & parentMap , int destination)
+{
+    // from destination we can reach each parent in the heirarchy untill we reach the source node
+    int curr = destination ;
+    vector<int> path ;
+    
+    
+    path.push_back(curr) ;
+
+    while(parentMap[curr] != -1)
+    {
+        curr = parentMap[curr] ;
+        path.push_back(curr) ;        
+    }
+
+    // since we have built the path from destination to source , just reverse the path to get path from source to destination 
+    reverse(path.begin() , path.end()) ;
+
+    return path ;
+}
  
 
-void bfsSingleShortestSourcePath( vector<vector<int>> & adj , vector<int> & distanceMap , int & source , int n)
+void bfsSingleShortestSourcePath( vector<vector<int>> & adj , vector<int> & distanceMap , int & source , vector<int> & parentMap , int n)
 {
     vector<bool> visited(n , false) ; // we can also use distanceMap vector and initialise it with -1 , and just check if the distanceMap[node] == -1 , it means it is not visited yet 
 
@@ -52,23 +80,29 @@ void bfsSingleShortestSourcePath( vector<vector<int>> & adj , vector<int> & dist
     que.push(source) ;
     visited[source] = true ;
 
-    int level = 0 ;
-    distanceMap[source] = level ;
+    int distFromSource = 0 ;
+    distanceMap[source] = distFromSource ;
+
+    parentMap[source] = -1 ;
 
     while(! que.empty())
     {
         int curr = que.front() ;
         que.pop() ;
-        level = distanceMap[curr] ;
-        level++ ;
+        // distFromSource = distanceMap[curr] ;
+        // distFromSource++ ; // shortest distance of all the neighbour of current node from the source = shortest distance of current node from the source + 1 
         
         for(auto ngb : adj[curr])
         {
             if(visited[ngb] == false)
             {
                 visited[ngb] = true ;
-                distanceMap[ngb] = level ;
                 que.push(ngb) ;
+                // distanceMap[ngb] = distFromSource ;
+                distanceMap[ngb] = distanceMap[curr] + 1 ; // since we are visiting ngb through curr it means in the BFS tree , curr is the parent of ngb 
+
+                // parent of ngb is curr node 
+                parentMap[ngb] = curr ;
             }
         }
     }
@@ -97,11 +131,28 @@ int main()
     int source = 0 ;
     vector<int> distanceMap(n , 0) ;
 
-    bfsSingleShortestSourcePath(adj , distanceMap , source , n) ;
+    vector<int> parentMap(n) ;
 
+    bfsSingleShortestSourcePath(adj , distanceMap , source , parentMap , n) ;
+
+    cout<<endl<<"Single Source Shortest Path of each node from the source node "<< source <<" : "<< endl;
     for(int i = 0 ; i < n ; i++)
     {
         cout << i << " : " << distanceMap[i] << endl;
+    }cout<<endl;
+
+
+    // print shortest path from source to each node in the undirected graph
+    
+    for(int i = 0 ; i < n ; i++)
+    {
+        vector<int> path = generateSSSPath(parentMap , i) ;
+
+        cout<<"path ("<<i<<") : ";
+        for(int node : path)
+        {
+            cout << node <<" ";
+        }cout << endl ;
     }
 
 
