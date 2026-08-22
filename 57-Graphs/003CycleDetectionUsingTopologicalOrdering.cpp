@@ -2,6 +2,8 @@
 // ans.size() == |V| --> directed graph is acyclic 
 // ans.size() != |V| --> directed graph is cyclic 
 
+// if(ans.size() < |V|) // there are cyclic dependencies
+
 
 /*
 -- Application of topologocial sort
