@@ -35,7 +35,7 @@ Given an directed graph, check if there exists a back-edge or not.
 #include<bits/stdc++.h>
 using namespace std;
 
-// time : O(V + E) , not V +_ @E because we hve directed graph , degree in directed graph is number of edges 
+// time : O(V + E) , not V + 2*E because we hve directed graph , degree in directed graph is number of edges 
 bool dfsCycleDetectionInDirectedGraph(vector<set<int>> & adjacencyList , vector<bool> & visited , set<int> & directedPath , int currentNode)
 {
     // mark the currentNode as visited 
