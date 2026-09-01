@@ -1,4 +1,23 @@
 
+Dijkstra's Algorithm is an iterative algorithm (not recursive algorithm).
+
+As logn as "edge weights" are "non-negaitves" , dijkstra's algorithm is always going to work , if edge weights are "negative" , dijkstra's algorithm may or may not work.
+
+If edge weights are negative , to solve single source shortest path , we will use : Bellman-ford Algorithm.
+
+For a weighted graph , the "Single Source Shortest Path" is "not defined" , if the graph contains "negative weight cycle".
+
+"Negative weight Cycle" : means sum of weight of all the edges in the cycle is "negative" , and to minimise the path distance , the traversal will stuck in this negative weight cycle , because in each extra cycle traversal the path distance/cost will decrease negatively , and it will tends towards negative infinity , so we cannot solve "single source shortest path" for the graph that contains "negative weight cycle".
+
+
+for negative edge weights : use bellman ford algorithm 
+If the graph has "negative weight cycle" , then bellman ford can detect that "negative weight cycle".
+
+Bellman Ford Algorithm is slower than Dijkstra's Algorithm.
+
+Is Dijkstra an exhaustive algorithm : No , because it does not do minimum of all the paths possible from source to a destination. If it would be an exhaustive algorithm then , anywhere within the algorithm recursion or dp should be used.
+Dijkstra's Algorithm is a "Greedy Algorithm". 
+
 Dijkstra's Algorithm is used for weighted graph : Single Source Shortest Path Algorithm For weighted Graph 
 
 Dijkstra's Algorithm use : Given a "weighted" graph "source" vertex , design an algorithm to find the length of the "shortest path" from the "source" vertex to all the "other" vertices.
@@ -9,10 +28,6 @@ In weighted graph , we don't want to minimize the number of edges , we are tryin
 Dijkastra works for both "Directed Graphs" and "UnDirected Graphs" as long as graph is "weighted".
 
 Similarly , BFS works for both "Directed Graphs" and "UnDirected Graphs" as logn as graph is UnWeighted. 
-
-
-
-Dijkstra's Algorithm is an iterative algorithm (not recursive algorithm).
 
 
 
