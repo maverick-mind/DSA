@@ -87,13 +87,26 @@ int main()
     parent[src] = -1 ;
 
 
+    // space : in worst case : every time we relax an edge , we will push an entry onto the heap.
+    // space : V (due to distance map) + E (due to maximum entries in the min-Heap)
 
+    // time : If size of heap is at max E , then every operation is : Log E
+    // time : E relaxation(at max each edge can be relaxed for one time) and each relaxation is Log E.
+    // so , total time : E logE
+
+    // time : O(ElogE)
+    // space : O(V+E) due to distMap(V) + size of min-heap(E)
+
+    // for sparse graph : E ~ V , time : O(ElogV)
+    // dense graph : E ~ V^2 , time : O(Elog(V^2)) ~ O(2ElogV) ~ O(ElogV)
     while(! pq.empty())
     {
         auto [dist , currNode] = pq.top() ;
 
         pq.pop() ;
 
+
+        // this entry {dist , currNode} is outdated , there exist a shorter path than "dist" in distMap  for this currNode , so do nothing for this entry
         if(distMap[currNode] < dist) continue ; // because we cannot delete non-top element in heap , there might be possibility that we find a shorter edge distance and we updated the distance map , so in that case remove pq.top() and continue 
 
         // travel to all the neighbour of currNode which are unexplored 
