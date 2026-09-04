@@ -60,6 +60,9 @@ int main()
 
     crDistMap[src] = 0 ;
     
+    // time : O(v * E) : (V-1 rounds) * (in every rounds , in worst case , we will relax E edges) * and relaxing one edge is constant operation
+
+    // Space : O(V) : (V for crDistMap[]) + (V for nrDistMap[])
 
     // During round i, only paths containing at most i edges are considered.
     for (int i = 1; i <= n-1; i++) // n-1 maximum rounds we are doing ,
@@ -67,7 +70,9 @@ int main()
         // the shortest path between 2 nodes will have at max (V-1) edges or 
         // we can say (V-1) is the maximum number of edges required to reach any node from the "source node".
         
-        vector<int> nrDistMap = crDistMap ; // next round DistMap
+        // next round DistMap
+        vector<int> nrDistMap = crDistMap ; // either distances will improve or they remain same in the next round , so initialise the next round DistMap with current Round DistMap
+
 
         for(int curr = 0 ; curr < n ; curr++)
         {
@@ -76,8 +81,17 @@ int main()
                 // it means we can go to the neighbour of this ith node
                 for(auto [ngb , edgeWeight] : adj[curr])
                 {
-                    if(crDistMap[ngb] > crDistMap[curr] + edgeWeight)
+                    // if(crDistMap[ngb] > crDistMap[curr] + edgeWeight) // this will not always work 
+                    // let's say right now , crDistMap[ngb] : INFINITY 
+                    // there is an edge with weight : 10 from u1--> ngb , and crDistMap[u1] : 5 
+                    // so (crDistMap[ngb] > crDistMap[curr] + edgeWeight) is true and we update nrDistMap[ngb] = 5 + 10 = 15 ;
+                    // now there is another edge with weight : 20 from u2--> ngb , and crDistMap[u2] : 25 
+                    // so , now (crDistMap[ngb] > crDistMap[curr] + edgeWeight) is again true , as crDistMap[ngb] : INFINITY 
+                    // so we will update nrDistMap[ngb] from 15 to (25 + 20) , i.e. 45 , but we should not be doing that , and this happened because we compared crDistMap[ngb] , we should have compared the updated distance , which is stored in nrDistMap[ngb]
+                    if(nrDistMap[ngb] > crDistMap[curr] + edgeWeight) 
                     {
+                        // in the if-condition ,
+                        // this might not always work : crDistMap[ngb] > crDistMap[curr] + edgeWeight , so it is adviced to compare next round dist map nrDistMap[ngb] , because nrDistMap[ngb] is the updated distance , and we compare updated distance to check if it is needed to relax or not , because for node : ngb , we want the best answer for this round to be saved nrDistMap , that is why we are comparing nrDistMap[ngb] > crDistMap[curr] + edgeWeight
                         nrDistMap[ngb] = crDistMap[curr] + edgeWeight ;
                     }
                 }
