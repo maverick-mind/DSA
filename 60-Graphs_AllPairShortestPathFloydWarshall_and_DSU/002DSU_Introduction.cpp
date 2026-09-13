@@ -40,3 +40,19 @@ The disjoint set data structure supports three main operations , those include
     To implement the disjoint set data structure with the forest representation , we will use a hash table to store a mapping between nodes and their parents.
 
 In out implementation , we are going to assume the total number of nodes are from [1....n] and for map we will use vector of size [n+1] (not use index 0)
+
+
+
+time for unionSet() function and findSet() function can be height of the tree in the set 
+we can optimize them using strategies such as : 
+--> union by rank(or size)
+--> path compression 
+
+
+--> union by rank (or size) : The idea behind union by rank is : during "union" operation , make the root with of the tree with "lower rank" point to the root of the tree with "higher rank" , because we don't want the height of the union-tree to be greater than the height of any of the set-tree. Think of rank as "height of the tree". To implement this , we need rank-map 
+
+
+ 
+--> path compression : The idea behind path compression is : during the "find" operation , make every node visited along the path to the root node , "point to the root node".
+
+When we combine union by rank and path compression , on average the time complexity of the find operation and the union operation is "constant".
