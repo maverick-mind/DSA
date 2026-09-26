@@ -11,7 +11,7 @@ int main()
 
     int mask = (1 << k) ; 
 
-    cout<< (n ^ mask)<<endl;
+    cout<< (n ^ mask)<<endl; // to flip the kth bit , take XOR (n ^ (1 << k))
  
  
  
